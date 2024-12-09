@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="/commonStyle.css">
+</head>
+<body>
+    <h2>Booked Users</h2>
+    <br>
+   
+    <div class="booked-user">
+
+<% if (newBooking.length === 0) { %>
+            <!-- No results message -->
+            <p >No Packages Booked</p>
+        <% } else { %>
+            <% for (let bookUsername of newBooking) { %>
+                <div class="container">
+                    <p >Location:-<%= bookUsername.Location %></p>
+                    <p >Arrival date:-<%=bookUsername.Arrival %></p>
+                    <p >Leaving date:-<%=bookUsername.Leaving %></p>
+                    <p >Total Persons:-<%=bookUsername.Persons %></p>
+                    <p >Total Price:-&#8377;<%=bookUsername.Price.toLocaleString("en-IN") %></p>
+                </div>
+              
+               
+                <% } %>
+                <% } %>
+
+    </div>
+</body>
+</html>

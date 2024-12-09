@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel World</title>
+    <link rel="stylesheet" href="/packagedetail.css"/>
+</head>
+<body>
+  <% for(let packageDetail of destinationpackage){ %>
+    <div class="container">
+      <img src="<%= packageDetail.image %>"   alt="..." >
+      <h5 ><%= packageDetail.location %></h5>
+      <p ><%= packageDetail.description %></p>
+      <p >&#8377;<%= packageDetail.price.toLocaleString("en-IN") %></p>
+      <div class="link">
+        <a  href="/travelWorld/book" class="btn btn-primary">
+          Book Now
+      </a>
+      </div>
+     
+    </div>
+       
+     
+      <% } %>
+      <br>
+</body>
+</html>
