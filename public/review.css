@@ -1,0 +1,81 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;  
+}
+.review{
+    background-image: url("https://images.unsplash.com/photo-1635262132278-40d2468da96c?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg")  ;
+    background-position: center;
+    background-attachment: fixed;
+   
+   background-size: cover;
+
+    height: 70vh;
+
+ 
+}
+header section p{
+    font-size: 4rem;
+    padding-top: 25vh;
+    color: white;
+    text-transform: capitalize;
+    font-style:normal ;
+    font-weight: bold;
+ }
+
+
+.container{
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    gap: 1rem;
+ 
+  
+}
+.box{
+    width: 50px;
+    height: 50px;
+    background-color: rgb(68, 68, 219);
+    text-align: center;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.reviews .grid{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+ }
+ 
+ .reviews .grid .box{
+    background-color: rgb(172, 166, 166);
+    padding: 1rem;
+    height: 100%;
+    width: 90%;
+    text-align: center;
+    border-radius: .5rem;
+ }
+ .reviews .grid .box h3{
+    font-size: 2rem;
+    color: white;
+ }
+ 
+ .reviews .grid .box p{
+    padding: 1rem 0;
+    line-height: 2;
+    color:white;
+    font-size: 1rem;
+ }
+ .reviews .grid .box:hover{
+    background-color:gray;
+ }
+ button{
+  margin-right: 20px;
+  
+    float: right;
+ }

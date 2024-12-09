@@ -1,0 +1,23 @@
+.review-form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+label{
+  padding-bottom: 10px;
+}
+.review-form input,
+.review-form textarea {
+  border: 1px solid #ced4da; 
+  border-radius: 0; 
+}
+
+.review-form button {
+  width: 100%;
+}
+  
+  
+  

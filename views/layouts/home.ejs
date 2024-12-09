@@ -1,0 +1,284 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/common.css">
+    
+   
+</head> 
+
+<body>
+    <!-- header of home section starts here -->
+    <div class="home">
+        <div class="container-fluid">
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- Logo -->
+                    <div class="navbar-brand d-flex align-items-center">
+                        <img src="/Images/icon.png" alt="Logo" class="img-fluid" style="height: 40px;">
+                        <span class="ms-2 fw-bold">Travel</span><span class="ms-1 fw-bold">World</span>
+                    </div>
+                
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarMenu">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/travelWorld/home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/travelWorld/about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/travelWorld/review">Review</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/travelWorld/packages">Packages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/travelWorld/book">Book</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/travelWorld/contact">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <% if(!currUser) {%>
+                                    <button type="button" class="btn  btn-outline-primary me-2" id="signInButton">Sign In</button>
+                                    <button type="button" class="btn  btn-outline-secondary" id="signUpButton">Sign Up</button>
+                           <% } %> 
+                            </li>
+                            <li class="nav-item">
+                           <% if(currUser) {%>
+                            <form method="GET" action="http://localhost:3000/travelWorld/signOut">
+                                <button type="submit" class="btn btn-outline-danger " id="signOut" >Sign Out</button></form>
+                           
+                          <%   } %>
+                
+                        </li>
+                        </ul>
+                    </div>
+                </nav> 
+                <section class="text-center mt-3">
+                    <p class="mt">Explore the World,<br> One Adventure at a Time!</p>
+                </section>
+            </header>
+        </div>
+    </div>
+
+    <div id="SignInModal">
+        <div class="signIn-content">
+           <div class="head-content d-flex align-items-center">
+            <h5 >Sign In</h5>
+            <i class="fa-solid fa-xmark"></i>
+           </div>
+           
+           <form id="SignForm" onsubmit="return signInValidateForm()"  method="POST" action="http://localhost:3000/travelWorld/signIn">
+            <div class="mb-3 input-container">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" id="fullName" name="username" placeholder="Full Name"required >
+                <span id="name-error1" class="error-message"></span>
+            </div>
+            <div class="mb-3 input-container">
+                <i class="fa fa-lock icon"></i> 
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <span id="password-error1" class="error-message"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+        </form>
+        
+            
+        </div>
+    </div>
+    <div id="SignUpModal">
+        <div class="signUp-content">
+           <div class="head-content d-flex align-items-center">
+            <h5 >Sign Up</h5>
+            <i class=" fa-solid fa-xmark"></i>
+           </div>
+           
+           <form id="SignUpForm" onsubmit="return signUpValidateForm()" method="POST" action="http://localhost:3000/travelWorld/signUp" >
+            <div class="mb-3 input-container">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Full Name"required >
+                <span id="name-error" class="error-message"></span>
+            </div>
+        
+            <div class="mb-3 input-container">
+                <i class="fas fa-envelope icon"></i>
+                <input type="email" class="form-control" id="SignUpemail" name="email" placeholder="Email" required >
+                <span id="email-error" class="error-message"></span>
+            </div>
+        
+            <div class="mb-3 input-container">
+                <i class="fas fa-phone icon"></i>
+                <input type="tel" class="form-control" id="phone" name="phoneNumber" placeholder="Phone Number" required >
+                <span id="phone-error" class="error-message"></span>
+            </div>
+        
+            <div class="mb-3 input-container">
+                <i class="fas fa-lock icon"></i>
+                <input type="password" class="form-control" id="SignUppassword"  name="password" placeholder="Password" required>
+                <span id="password-error" class="error-message"></span>
+            </div>
+        
+            <div class="mb-3 input-container">
+                <i class="fas fa-lock icon"></i>
+                <input type="password" class="form-control" id="confirmPassword"name="confirmpassword" placeholder="Confirm Password" required>
+                <span id="confirmPassword-error" class="error-message"></span>
+            </div>
+        
+            <button type="submit"  class="btn btn-primary w-100" >Sign Up</button>
+        </form>
+        
+            
+        </div>
+    </div>
+  
+    
+
+    <!-- search box of home section start here -->
+
+    <div class="container-fluid">
+        <div class="search-box">
+            <p>Feel At Home When You're Away</p>
+            <section class="flex">
+    
+                <form id="searchForm" action="http://localhost:3000/travelWorld/search"  method="GET">
+                    <div class="container text-center">
+                        <div class="row row-cols-auto">
+                            <div class="col">
+                                <label for="location">Destination:</label>
+                                <input type="text"  name="location"  id="location" required maxlength="50" placeholder="Destination"
+                                    class="box">
+                            </div>
+                            <div class="col"> <label for="CheckIn-date">Check In:</label>
+                                <input type="date"  id="CheckIn-date" class="box" required>
+                            </div>
+                            <div class="col"> <label for="CheckOut-date">Check Out:</label>
+                                <input type="date"  id="CheckOut-date" class="box" required>
+                            </div>
+                            <div class="col"> <label for="adult">Adult:</label>
+                                <input type="number"  id="adult" min="1" max="10" maxlength="2" placeholder="Adult"
+                                    required class="box">
+                            </div>
+    
+                            <div class="col">
+    
+                                <label for="kids">Kids:</label>
+                                <input type="number"  id="kids" min="0" max="10" maxlength="2" placeholder="Kids" required class="box">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      
+                    </div>
+    
+
+                  
+                </form>
+            </section>
+        </div>
+        
+    </div>
+   
+
+<!-- home services starts from here -->
+
+    <div class="services">
+
+        <section>
+            <h2>Our Services</h2>
+            <div class="service-box">
+                <img src="/Images/mountain.png">
+                <p> Tracking</p>
+            </div>
+            <div class="service-box">
+                <img src="/Images/hiking.png">
+                <p>Adventure</p>
+            </div>
+            <div class="service-box">
+                <img src="/Images/tent.png">
+                <p>Camping</p>
+            </div>
+            <div class="service-box">
+                <img src="/Images/bonfire.png">
+                <p>Camp-Fire</p>
+            </div>
+            <div class="service-box">
+                <img src="/Images/tour-guide.png">
+                <p>Tour Guide</p>
+            </div>
+            <div class="service-box">
+                <img src="/Images/guidepost.png">
+                <p>off-Road</p>
+            </div>
+
+        </section>
+    </div>
+
+    </div>
+    <br>
+    <br>
+
+     <!-- footer of the page -->
+     <footer class="footer">
+        <div class="footer-container">
+          
+            <div class="footer-section about">
+                <h3>About Us</h3>
+                <p>
+                    We offer the best travel packages, tours, and unforgettable experiences to make your dream vacations a reality.
+                </p>
+            </div>
+    
+          
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/travelWorld/home">Home</a></li>
+                    <li><a href="/travelWorld/about">About</a></li>
+                    <li><a href="/travelWorld/review">Review</a></li>
+                    <li><a href="/travelWorld/packages">Packages</a></li>
+                    <li><a href="/travelWorld/book">Book</a></li>
+                    <li><a href="/travelWorld/contact">Contact</a></li>
+                </ul>
+            </div>
+    
+          
+            <div class="footer-section contact-info">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Avas Vikas Colony,UP</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+                <p><i class="fas fa-envelope"></i> travelworld@gmail.com</p>
+            </div>
+    
+          
+            <div class="footer-section social-media">
+                <h3>Follow Us</h3>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        
+    </footer>
+    
+    
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+         <script src="/JavaScript/home.js"></script> 
+</body>
+
+<!-- </html> -->
