@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 const path = require("path");
 const Destination = require("./model/DestinationModel.js");
@@ -11,6 +12,9 @@ const BookedUser = require('./model/BookingModel.js');
 const newUserQuery = require('./model/QueryModel.js');
 const UserReview=require('./model/ReviewModel.js')
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
+
 const port = 3000;
 app.use(express.json());
 
@@ -24,10 +28,24 @@ app.use('/JavaScript', express.static(path.join(__dirname, 'JavaScript')));
 app.use(express.urlencoded({ extended: true }));
 
 
+const store= MongoStore.create({
+  mongoUrl:process.env.MONGO_URI,
+  crypto: {
+    secret: 'travelWorld'
+  },
+  touchAfter:24*3600,
+}
+   
+)
 
+store.on("error",()=>{
+  console.log("Error in Mongo Db");
+})
 
 app.use(session({
+  store:store,
   secret: 'travelWorld',
+  
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -102,7 +120,8 @@ main().then((res) => {
 
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/travelWorld');
+ 
+  await mongoose.connect(process.env.MONGO_URI);
 }
 
 // Search Destinations 
